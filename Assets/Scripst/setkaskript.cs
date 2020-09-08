@@ -11,13 +11,13 @@ Vector3 position;
     // Start is called before the first frame update
     void Start()
     {
-         transform.position = objec.position;
+         transform.position = new Vector3(1.5f,0f,0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-         position = objec.position;
+        position = objec.position;
         position.z = 0;
         position.x = 1.5f;
         position.y = position.y - height;
