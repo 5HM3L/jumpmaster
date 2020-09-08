@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 85295646}
   - component: {fileID: 85295648}
   - component: {fileID: 85295647}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 62.100006, y: -59.400024}
-  m_SizeDelta: {x: 90.160706, y: 83.6012}
+  m_AnchoredPosition: {x: 69.897, y: -62.5}
+  m_SizeDelta: {x: 74.526855, y: 67.48694}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &85295647
 MonoBehaviour:
@@ -252,7 +252,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 7b1bbb59fbd6be619a91349c57675ad0, type: 3}
     m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
@@ -1300,7 +1300,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 7b1bbb59fbd6be619a91349c57675ad0, type: 3}
     m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
@@ -2452,7 +2452,7 @@ GameObject:
   - component: {fileID: 1258703512}
   - component: {fileID: 1258703514}
   - component: {fileID: 1258703513}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2498,7 +2498,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 7b1bbb59fbd6be619a91349c57675ad0, type: 3}
     m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
@@ -2530,7 +2530,7 @@ GameObject:
   - component: {fileID: 1607373702}
   - component: {fileID: 1607373704}
   - component: {fileID: 1607373703}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2606,7 +2606,7 @@ GameObject:
   - component: {fileID: 1665188837}
   - component: {fileID: 1665188836}
   - component: {fileID: 1665188839}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2630,7 +2630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -80.6, y: -65.8}
+  m_AnchoredPosition: {x: -63.3, y: -68.1}
   m_SizeDelta: {x: 105.329666, y: 90.18397}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1665188836
