@@ -1841,6 +1841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 1071326647}
+  setka: {fileID: 0}
   gui_score: {fileID: 1258703513}
   gui_game_over: {fileID: 159781286}
   gui_game_restart_reboot: {fileID: 0}
@@ -2475,8 +2476,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 135.8, y: -67.457}
-  m_SizeDelta: {x: 57.27971, y: 67.486824}
+  m_AnchoredPosition: {x: 173.3, y: -67.457}
+  m_SizeDelta: {x: 132.33054, y: 67.486824}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1258703513
 MonoBehaviour:
