@@ -11,6 +11,7 @@ public class mainscript : MonoBehaviour
 
 {
     public Animator Anim;
+    public GameObject setka;
     // Start is called before the first frame update
     public UnityEngine.UI.Text gui_score; // очки текст
     public UnityEngine.UI.Text gui_game_over; // конец игры
@@ -290,6 +291,7 @@ public class mainscript : MonoBehaviour
             gui_score.text ="Score:"+ mainscore.ToString();
             Destroy(bonuscollider.gameObject);
             isbonusfalling = false;
+            setka.GetComponent<Renderer>().material.color = color.red;
         }
         
     }
