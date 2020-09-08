@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripst\camscript.cs" />
+     <Compile Include="Assets\Scripst\mainbuttons.cs" />
      <Compile Include="Assets\Scripst\mainscript.cs" />
      <Compile Include="Assets\Scripst\pause.cs" />
      <Compile Include="Assets\Scripst\setkaskript.cs" />
