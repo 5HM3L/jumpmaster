@@ -291,7 +291,7 @@ public class mainscript : MonoBehaviour
             gui_score.text =mainscore.ToString();
             Destroy(bonuscollider.gameObject);
             isbonusfalling = false;
-            setka.GetComponent<Renderer>().material.color = color.red;
+            //setka.GetComponent<Renderer>().material.color = color.red;
         }
         
     }

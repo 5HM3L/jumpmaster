@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":false,"pivot":{"x":0.06745719909667969,"y":3.281564950942993,"z":4.595660209655762},"rotation":{"x":0.010206767357885838,"y":-0.9886146783828735,"z":0.12763835489749909,"w":0.07905572652816773},"size":6.686744689941406,"orthographic":false}
-=======
-﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":358.0493469238281,"y":752.0159301757813,"z":-212.375},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":95.35337829589844,"orthographic":true}
->>>>>>> 97eb902eac9d39200a4029252b3e462aa0d051ac
