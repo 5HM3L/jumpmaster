@@ -55,7 +55,7 @@ public class mainscript : MonoBehaviour
 
     {  
         rebootbtn.SetActive(false);
-        gui_score.text = "Score:0"; // инициализация счета
+        gui_score.text = "0"; // инициализация счета
         gui_game_over.text = " ";//инициализация текста конца игры
         rb = GetComponent<Rigidbody> ();
         PosY = PosY * mnozh; // расчет стартовой позиции персонажа по высоте
@@ -260,7 +260,7 @@ public class mainscript : MonoBehaviour
     if (score < curh){
         score =(int) curh;
         mainscore = bonusscore + score;
-        gui_score.text = "Score:" + mainscore.ToString();
+        gui_score.text = mainscore.ToString();
     }
     }
 
@@ -288,7 +288,7 @@ public class mainscript : MonoBehaviour
             speed += speedbooster_from_bonus;
             bonusscore += 10;
             mainscore = bonusscore + score;
-            gui_score.text ="Score:"+ mainscore.ToString();
+            gui_score.text =mainscore.ToString();
             Destroy(bonuscollider.gameObject);
             isbonusfalling = false;
             setka.GetComponent<Renderer>().material.color = color.red;
