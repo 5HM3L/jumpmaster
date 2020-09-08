@@ -35,6 +35,8 @@ public class mainscript : MonoBehaviour
     public GameObject block; // подключене префаба падающего блока
     public GameObject bonusblock; //подключение префаба бонус-блока
     public int bonusblockspawncount = 10;
+    private float starttime = 0f;
+    private bool startgame = true;
     private bool isfalling = false, randkey = true, isbonusfalling = false; // падает блок или нет / булл для генерации значения позиции
                                                     // падающего блока 
     private int blockcount = 0;
@@ -292,7 +294,7 @@ public class mainscript : MonoBehaviour
         
     }
     void Update()
-    {
+    {    
         if (speedboosted){
             if ((mainscore % scorebooster_height == 0) && (mainscore != 0)){
                 speed += speedbooster_from_height;
@@ -341,7 +343,7 @@ public class mainscript : MonoBehaviour
             
 
         } else if((Input.GetKeyDown(KeyCode.DownArrow)) && (PosZ < 2.5f * mnozh)){
-           
+        
             Anim.SetBool("isJump",true);
             MovePerson(3);
             
@@ -349,278 +351,282 @@ public class mainscript : MonoBehaviour
         } else if((Input.GetKeyDown(KeyCode.LeftArrow)) && (PosX < 2.5f * mnozh)){
             Anim.SetBool("isJump",true);
             MovePerson(4);
-           
-          
+        
+        
         } else if((Input.GetKeyDown(KeyCode.RightArrow)) && (PosX > -2.5f * mnozh)){
-          
-           Anim.SetBool("isJump",true);
+        
+        Anim.SetBool("isJump",true);
             MovePerson(2);
-         
-          
+        
+        
         }
         else { Anim.SetBool("isJump",false);
         }
         
+        if (startgame){
+            starttime += Time.deltaTime;
+            if (starttime >= 3f){
+                startgame = false;
+                }
+            } else {
+            //падает ли блок в данный момент
+            if (!isfalling){
+                //падающего блока нет, генерируем новый
+                // если есть 1 заполненный слой, вычитаем 1 из всех счетчиков
+                if ((curcount1 >= 1) && (curcount2 >= 1) && (curcount3 >= 1) && (curcount4 >= 1) && (curcount5 >= 1) && (curcount6 >= 1) && (curcount7 >= 1) && (curcount8 >= 1) && (curcount9 >= 1)){
+                    curcount9 -= 1;
+                    curcount8 -= 1;
+                    curcount7 -= 1;
+                    curcount6 -= 1;
+                    curcount5 -= 1;
+                    curcount4 -= 1;
+                    curcount3 -= 1;
+                    curcount2 -= 1;
+                    curcount1 -= 1;
+                }
 
-        //падает ли блок в данный момент
-        if (!isfalling){
-            //падающего блока нет, генерируем новый
-            // если есть 1 заполненный слой, вычитаем 1 из всех счетчиков
-            if ((curcount1 >= 1) && (curcount2 >= 1) && (curcount3 >= 1) && (curcount4 >= 1) && (curcount5 >= 1) && (curcount6 >= 1) && (curcount7 >= 1) && (curcount8 >= 1) && (curcount9 >= 1)){
-                curcount9 -= 1;
-                curcount8 -= 1;
-                curcount7 -= 1;
-                curcount6 -= 1;
-                curcount5 -= 1;
-                curcount4 -= 1;
-                curcount3 -= 1;
-                curcount2 -= 1;
-                curcount1 -= 1;
-            }
-
-            // проверка на конец игры
-            if (mblock){
-                // блок падает на перса, и перс с блоком в одной позиции
-                if ((mblock.transform.position.y - curh <= 1) && (randnum == heropoz)){
-                    // конец игры
-                    endgame();
-                }
-            }
-
-            // генерация позиции нового блока с учетом того что не может упасть больше 2х блоков на одну позицию
-            while (randkey){
-                randnum = Random.Range(1, 10);
-                if ((randnum == 1) && (curcount1 <= layerscount)){
-                    curcount1 += 1; //+1 к кол-ву блоков на 1 позиции
-                    randkey = false; // выход из цикла
-                    break;
-                }
-                if ((randnum == 2) && (curcount2 <= layerscount)){
-                    curcount2 += 1;
-                    randkey = false;
-                    break;
-                }
-                if ((randnum == 3) && (curcount3 <= layerscount)){
-                    curcount3 += 1;
-                    randkey = false;
-                    break;
-                }
-                if ((randnum == 4) && (curcount4 <= layerscount)){
-                    curcount4 += 1;
-                    randkey = false;
-                    break;
-                }
-                if ((randnum == 5) && (curcount5 <= layerscount)){
-                    curcount5 += 1;
-                    randkey = false;
-                    break;
-                }
-                if ((randnum == 6) && (curcount6 <= layerscount)){
-                    curcount6 += 1;
-                    randkey = false;
-                    break;
-                }
-                if ((randnum == 7) && (curcount7 <= layerscount)){
-                    curcount7 += 1;
-                    randkey = false;
-                    break;
-                }
-                if ((randnum == 8) && (curcount8 <= layerscount)){
-                    curcount8 += 1;
-                    randkey = false;
-                    break;
-                }
-                if ((randnum == 9) && (curcount9 <= layerscount)){
-                    curcount9 += 1;
-                    randkey = false;
-                    break;
-                }
-            }
-            randkey = true; // включаем цикл генерации на следующий раз
-            mblock = Instantiate(block) as GameObject; //создаем новый блок
-            block_pointer = Instantiate(pref_block_pointer) as GameObject;
-            blockcount += 1;
-            // в зависимости от сгенерированной позиции устанавливаем координаты блока
-            if (randnum == 1){
-                mblock.transform.position = new Vector3(3f * mnozh,h1 + spawnheight,-3f * mnozh);
-                block_pointer.transform.position = new Vector3(3f, h1 - 0.5f, -3f);
-            } else if (randnum == 2){
-                mblock.transform.position = new Vector3(0.0f,h2 + spawnheight,-3f * mnozh);
-                block_pointer.transform.position = new Vector3(0f, h2 - 0.5f, -3f);
-            } else if (randnum == 3){
-                mblock.transform.position = new Vector3(-3f * mnozh,h3 + spawnheight,-3f * mnozh);
-                block_pointer.transform.position = new Vector3(-3f, h3 - 0.5f, -3f);
-            } else if (randnum == 4){
-                mblock.transform.position = new Vector3(3f * mnozh,h4 + spawnheight,0.0f);
-                block_pointer.transform.position = new Vector3(3f, h4 - 0.5f, 0f);
-            } else if (randnum == 5){
-                mblock.transform.position = new Vector3(0.0f,h5 + spawnheight,0.0f);
-                block_pointer.transform.position = new Vector3(0f, h5 - 0.5f, 0f);
-            } else if (randnum == 6){
-                mblock.transform.position = new Vector3(-3f * mnozh,h6 + spawnheight,0.0f);
-                block_pointer.transform.position = new Vector3(-3f, h6 - 0.5f, 0f);
-            } else if (randnum == 7){
-                mblock.transform.position = new Vector3(3f * mnozh,h7 + spawnheight,3f * mnozh);
-                block_pointer.transform.position = new Vector3(3f, h7 - 0.5f, 3f);
-            } else if (randnum == 8){
-                mblock.transform.position = new Vector3(0.0f,h8 + spawnheight,3f * mnozh);
-                block_pointer.transform.position = new Vector3(0f, h8 - 0.5f, 3f);
-            } else if (randnum == 9){
-                mblock.transform.position = new Vector3(-3f * mnozh,h9 + spawnheight,3f * mnozh);
-                block_pointer.transform.position = new Vector3(-3f, h9 - 0.5f, 3f);
-            }
-            isfalling = true; // блок падает
-        } else {
-            // каждый кадр двигаем блок вниз
-            mblock.transform.Translate(Vector3.down * speed * Time.deltaTime);
-            // в зависимости от позиции смотрим упал ли блок
-            if (randnum == 1){
-                if (mblock.transform.position.y < h1){
-                    mblock.transform.position = new Vector3(3f * mnozh,h1,-3f * mnozh); // блок упал, ставим его
-                    h1 += 1f * mnozh; // меняем высоты позиции
-                    isfalling = false; // блок упал, нужно генерировать новый
-                    Destroy(block_pointer.gameObject);
-                }
-            } else if (randnum == 2){
-                if (mblock.transform.position.y < h2){
-                    mblock.transform.position = new Vector3(0.0f,h2,-3f * mnozh);
-                    h2 += 1f * mnozh;
-                    isfalling = false;
-                    Destroy(block_pointer.gameObject);
-                }
-            } else if (randnum == 3){
-                if (mblock.transform.position.y < h3){
-                    mblock.transform.position = new Vector3(-3f * mnozh,h3,-3f * mnozh);
-                    h3 += 1f * mnozh;
-                    isfalling = false;
-                    Destroy(block_pointer.gameObject);
-                }
-            } else if (randnum == 4){
-                if (mblock.transform.position.y < h4){
-                    mblock.transform.position = new Vector3(3f * mnozh,h4,0.0f);
-                    h4 += 1f * mnozh;
-                    isfalling = false;
-                    Destroy(block_pointer.gameObject);
-                }
-            } else if (randnum == 5){
-                if (mblock.transform.position.y < h5){
-                    mblock.transform.position = new Vector3(0.0f,h5,0.0f);
-                    h5 += 1f * mnozh;
-                    isfalling = false;
-                    Destroy(block_pointer.gameObject);
-                }
-            } else if (randnum == 6){
-                if (mblock.transform.position.y < h6){
-                    mblock.transform.position = new Vector3(-3f * mnozh,h6,0.0f);
-                    h6 += 1f * mnozh;
-                    isfalling = false;
-                    Destroy(block_pointer.gameObject);
-                }
-            } else if (randnum == 7){
-                if (mblock.transform.position.y < h7){
-                    mblock.transform.position = new Vector3(3f * mnozh,h7,3f * mnozh);
-                    h7 += 1f * mnozh;
-                    isfalling = false;
-                    Destroy(block_pointer.gameObject);
-                }
-            } else if (randnum == 8){
-                if (mblock.transform.position.y < h8){
-                    mblock.transform.position = new Vector3(0.0f,h8,3f * mnozh);
-                    h8 += 1f * mnozh;
-                    isfalling = false;
-                    Destroy(block_pointer.gameObject);
-                }
-            } else if (randnum == 9){
-                if (mblock.transform.position.y < h9){
-                    mblock.transform.position = new Vector3(-3f * mnozh,h9,3f * mnozh);
-                    h9 += 1f * mnozh;
-                    isfalling = false;
-                    Destroy(block_pointer.gameObject);
-                }
-            }
-        }
-        if (!isbonusfalling){
-            if (blockcount % bonusblockspawncount == 0){
-                while(randkey){
-                    bonusrandnum = Random.Range(1,10);
-                    if(randnum != bonusrandnum){
-                        randkey = false;
+                // проверка на конец игры
+                if (mblock){
+                    // блок падает на перса, и перс с блоком в одной позиции
+                    if ((mblock.transform.position.y - curh <= 1) && (randnum == heropoz)){
+                        // конец игры
+                        endgame();
                     }
                 }
-                randkey = true;
-                mbonusblock = Instantiate(bonusblock) as GameObject;
-                if (bonusrandnum == 1){
-                    mbonusblock.transform.position = new Vector3(3f * mnozh,h1 + spawnheight,-3f * mnozh);
-                } else if (bonusrandnum == 2){
-                    mbonusblock.transform.position = new Vector3(0.0f,h2 + spawnheight,-3f * mnozh);
-                } else if (bonusrandnum == 3){
-                    mbonusblock.transform.position = new Vector3(-3f * mnozh,h3 + spawnheight,-3f * mnozh);
-                } else if (bonusrandnum == 4){
-                    mbonusblock.transform.position = new Vector3(3f * mnozh,h4 + spawnheight,0.0f);
-                } else if (bonusrandnum == 5){
-                    mbonusblock.transform.position = new Vector3(0.0f,h5 + spawnheight,0.0f);
-                } else if (bonusrandnum == 6){
-                    mbonusblock.transform.position = new Vector3(-3f * mnozh,h6 + spawnheight,0.0f);
-                } else if (bonusrandnum == 7){
-                    mbonusblock.transform.position = new Vector3(3f * mnozh,h7 + spawnheight,3f * mnozh);
-                } else if (bonusrandnum == 8){
-                    mbonusblock.transform.position = new Vector3(0.0f,h8 + spawnheight,3f * mnozh);
-                } else if (bonusrandnum == 9){
-                    mbonusblock.transform.position = new Vector3(-3f * mnozh,h9 + spawnheight,3f * mnozh);
+
+                // генерация позиции нового блока с учетом того что не может упасть больше 2х блоков на одну позицию
+                while (randkey){
+                    randnum = Random.Range(1, 10);
+                    if ((randnum == 1) && (curcount1 <= layerscount)){
+                        curcount1 += 1; //+1 к кол-ву блоков на 1 позиции
+                        randkey = false; // выход из цикла
+                        break;
+                    }
+                    if ((randnum == 2) && (curcount2 <= layerscount)){
+                        curcount2 += 1;
+                        randkey = false;
+                        break;
+                    }
+                    if ((randnum == 3) && (curcount3 <= layerscount)){
+                        curcount3 += 1;
+                        randkey = false;
+                        break;
+                    }
+                    if ((randnum == 4) && (curcount4 <= layerscount)){
+                        curcount4 += 1;
+                        randkey = false;
+                        break;
+                    }
+                    if ((randnum == 5) && (curcount5 <= layerscount)){
+                        curcount5 += 1;
+                        randkey = false;
+                        break;
+                    }
+                    if ((randnum == 6) && (curcount6 <= layerscount)){
+                        curcount6 += 1;
+                        randkey = false;
+                        break;
+                    }
+                    if ((randnum == 7) && (curcount7 <= layerscount)){
+                        curcount7 += 1;
+                        randkey = false;
+                        break;
+                    }
+                    if ((randnum == 8) && (curcount8 <= layerscount)){
+                        curcount8 += 1;
+                        randkey = false;
+                        break;
+                    }
+                    if ((randnum == 9) && (curcount9 <= layerscount)){
+                        curcount9 += 1;
+                        randkey = false;
+                        break;
+                    }
                 }
-                isbonusfalling = true;
+                randkey = true; // включаем цикл генерации на следующий раз
+                mblock = Instantiate(block) as GameObject; //создаем новый блок
+                block_pointer = Instantiate(pref_block_pointer) as GameObject;
+                blockcount += 1;
+                // в зависимости от сгенерированной позиции устанавливаем координаты блока
+                if (randnum == 1){
+                    mblock.transform.position = new Vector3(3f * mnozh,h1 + spawnheight,-3f * mnozh);
+                    block_pointer.transform.position = new Vector3(3f, h1 - 0.5f, -3f);
+                } else if (randnum == 2){
+                    mblock.transform.position = new Vector3(0.0f,h2 + spawnheight,-3f * mnozh);
+                    block_pointer.transform.position = new Vector3(0f, h2 - 0.5f, -3f);
+                } else if (randnum == 3){
+                    mblock.transform.position = new Vector3(-3f * mnozh,h3 + spawnheight,-3f * mnozh);
+                    block_pointer.transform.position = new Vector3(-3f, h3 - 0.5f, -3f);
+                } else if (randnum == 4){
+                    mblock.transform.position = new Vector3(3f * mnozh,h4 + spawnheight,0.0f);
+                    block_pointer.transform.position = new Vector3(3f, h4 - 0.5f, 0f);
+                } else if (randnum == 5){
+                    mblock.transform.position = new Vector3(0.0f,h5 + spawnheight,0.0f);
+                    block_pointer.transform.position = new Vector3(0f, h5 - 0.5f, 0f);
+                } else if (randnum == 6){
+                    mblock.transform.position = new Vector3(-3f * mnozh,h6 + spawnheight,0.0f);
+                    block_pointer.transform.position = new Vector3(-3f, h6 - 0.5f, 0f);
+                } else if (randnum == 7){
+                    mblock.transform.position = new Vector3(3f * mnozh,h7 + spawnheight,3f * mnozh);
+                    block_pointer.transform.position = new Vector3(3f, h7 - 0.5f, 3f);
+                } else if (randnum == 8){
+                    mblock.transform.position = new Vector3(0.0f,h8 + spawnheight,3f * mnozh);
+                    block_pointer.transform.position = new Vector3(0f, h8 - 0.5f, 3f);
+                } else if (randnum == 9){
+                    mblock.transform.position = new Vector3(-3f * mnozh,h9 + spawnheight,3f * mnozh);
+                    block_pointer.transform.position = new Vector3(-3f, h9 - 0.5f, 3f);
+                }
+                isfalling = true; // блок падает
+            } else {
+                // каждый кадр двигаем блок вниз
+                mblock.transform.Translate(Vector3.down * speed * Time.deltaTime);
+                // в зависимости от позиции смотрим упал ли блок
+                if (randnum == 1){
+                    if (mblock.transform.position.y < h1){
+                        mblock.transform.position = new Vector3(3f * mnozh,h1,-3f * mnozh); // блок упал, ставим его
+                        h1 += 1f * mnozh; // меняем высоты позиции
+                        isfalling = false; // блок упал, нужно генерировать новый
+                        Destroy(block_pointer.gameObject);
+                    }
+                } else if (randnum == 2){
+                    if (mblock.transform.position.y < h2){
+                        mblock.transform.position = new Vector3(0.0f,h2,-3f * mnozh);
+                        h2 += 1f * mnozh;
+                        isfalling = false;
+                        Destroy(block_pointer.gameObject);
+                    }
+                } else if (randnum == 3){
+                    if (mblock.transform.position.y < h3){
+                        mblock.transform.position = new Vector3(-3f * mnozh,h3,-3f * mnozh);
+                        h3 += 1f * mnozh;
+                        isfalling = false;
+                        Destroy(block_pointer.gameObject);
+                    }
+                } else if (randnum == 4){
+                    if (mblock.transform.position.y < h4){
+                        mblock.transform.position = new Vector3(3f * mnozh,h4,0.0f);
+                        h4 += 1f * mnozh;
+                        isfalling = false;
+                        Destroy(block_pointer.gameObject);
+                    }
+                } else if (randnum == 5){
+                    if (mblock.transform.position.y < h5){
+                        mblock.transform.position = new Vector3(0.0f,h5,0.0f);
+                        h5 += 1f * mnozh;
+                        isfalling = false;
+                        Destroy(block_pointer.gameObject);
+                    }
+                } else if (randnum == 6){
+                    if (mblock.transform.position.y < h6){
+                        mblock.transform.position = new Vector3(-3f * mnozh,h6,0.0f);
+                        h6 += 1f * mnozh;
+                        isfalling = false;
+                        Destroy(block_pointer.gameObject);
+                    }
+                } else if (randnum == 7){
+                    if (mblock.transform.position.y < h7){
+                        mblock.transform.position = new Vector3(3f * mnozh,h7,3f * mnozh);
+                        h7 += 1f * mnozh;
+                        isfalling = false;
+                        Destroy(block_pointer.gameObject);
+                    }
+                } else if (randnum == 8){
+                    if (mblock.transform.position.y < h8){
+                        mblock.transform.position = new Vector3(0.0f,h8,3f * mnozh);
+                        h8 += 1f * mnozh;
+                        isfalling = false;
+                        Destroy(block_pointer.gameObject);
+                    }
+                } else if (randnum == 9){
+                    if (mblock.transform.position.y < h9){
+                        mblock.transform.position = new Vector3(-3f * mnozh,h9,3f * mnozh);
+                        h9 += 1f * mnozh;
+                        isfalling = false;
+                        Destroy(block_pointer.gameObject);
+                    }
+                }
             }
-        }else{
-            mbonusblock.transform.Translate(Vector3.down * speed * Time.deltaTime);
-            if (bonusrandnum == 1){
-                if (mbonusblock.transform.position.y < h1){
-                    mbonusblock.transform.position = new Vector3(3f * mnozh,h1,-3f * mnozh); // блок упал, ставим его
-                    isbonusfalling = false; // блок упал, нужно генерировать новый
+            if (!isbonusfalling){
+                if (blockcount % bonusblockspawncount == 0){
+                    while(randkey){
+                        bonusrandnum = Random.Range(1,10);
+                        if(randnum != bonusrandnum){
+                            randkey = false;
+                        }
+                    }
+                    randkey = true;
+                    mbonusblock = Instantiate(bonusblock) as GameObject;
+                    if (bonusrandnum == 1){
+                        mbonusblock.transform.position = new Vector3(3f * mnozh,h1 + spawnheight,-3f * mnozh);
+                    } else if (bonusrandnum == 2){
+                        mbonusblock.transform.position = new Vector3(0.0f,h2 + spawnheight,-3f * mnozh);
+                    } else if (bonusrandnum == 3){
+                        mbonusblock.transform.position = new Vector3(-3f * mnozh,h3 + spawnheight,-3f * mnozh);
+                    } else if (bonusrandnum == 4){
+                        mbonusblock.transform.position = new Vector3(3f * mnozh,h4 + spawnheight,0.0f);
+                    } else if (bonusrandnum == 5){
+                        mbonusblock.transform.position = new Vector3(0.0f,h5 + spawnheight,0.0f);
+                    } else if (bonusrandnum == 6){
+                        mbonusblock.transform.position = new Vector3(-3f * mnozh,h6 + spawnheight,0.0f);
+                    } else if (bonusrandnum == 7){
+                        mbonusblock.transform.position = new Vector3(3f * mnozh,h7 + spawnheight,3f * mnozh);
+                    } else if (bonusrandnum == 8){
+                        mbonusblock.transform.position = new Vector3(0.0f,h8 + spawnheight,3f * mnozh);
+                    } else if (bonusrandnum == 9){
+                        mbonusblock.transform.position = new Vector3(-3f * mnozh,h9 + spawnheight,3f * mnozh);
+                    }
+                    isbonusfalling = true;
                 }
-            } else if (bonusrandnum == 2){
-                if (mbonusblock.transform.position.y < h2){
-                    mbonusblock.transform.position = new Vector3(0.0f,h2,-3f * mnozh);
-                    isbonusfalling = false;;
-                }
-            } else if (bonusrandnum == 3){
-                if (mbonusblock.transform.position.y < h3){
-                    mbonusblock.transform.position = new Vector3(-3f * mnozh,h3,-3f * mnozh);
-                    isbonusfalling = false;
-                }
-            } else if (bonusrandnum == 4){
-                if (mbonusblock.transform.position.y < h4){
-                    mbonusblock.transform.position = new Vector3(3f * mnozh,h4,0.0f);
-                    isbonusfalling = false;
-                }
-            } else if (bonusrandnum == 5){
-                if (mbonusblock.transform.position.y < h5){
-                    mbonusblock.transform.position = new Vector3(0.0f,h5,0.0f);
-                    isbonusfalling = false;
-                }
-            } else if (bonusrandnum == 6){
-                if (mbonusblock.transform.position.y < h6){
-                    mbonusblock.transform.position = new Vector3(-3f * mnozh,h6,0.0f);
-                    isbonusfalling = false;
-                }
-            } else if (bonusrandnum == 7){
-                if (mbonusblock.transform.position.y < h7){
-                    mbonusblock.transform.position = new Vector3(3f * mnozh,h7,3f * mnozh);
-                    isbonusfalling = false;
-                }
-            } else if (bonusrandnum == 8){
-                if (mbonusblock.transform.position.y < h8){
-                    mbonusblock.transform.position = new Vector3(0.0f,h8,3f * mnozh);
-                    isbonusfalling = false;
-                }
-            } else if (bonusrandnum == 9){
-                if (mbonusblock.transform.position.y < h9){
-                    mbonusblock.transform.position = new Vector3(-3f * mnozh,h9,3f * mnozh);
-                    isbonusfalling = false;
+            }else{
+                mbonusblock.transform.Translate(Vector3.down * speed * Time.deltaTime);
+                if (bonusrandnum == 1){
+                    if (mbonusblock.transform.position.y < h1){
+                        mbonusblock.transform.position = new Vector3(3f * mnozh,h1,-3f * mnozh); // блок упал, ставим его
+                        isbonusfalling = false; // блок упал, нужно генерировать новый
+                    }
+                } else if (bonusrandnum == 2){
+                    if (mbonusblock.transform.position.y < h2){
+                        mbonusblock.transform.position = new Vector3(0.0f,h2,-3f * mnozh);
+                        isbonusfalling = false;;
+                    }
+                } else if (bonusrandnum == 3){
+                    if (mbonusblock.transform.position.y < h3){
+                        mbonusblock.transform.position = new Vector3(-3f * mnozh,h3,-3f * mnozh);
+                        isbonusfalling = false;
+                    }
+                } else if (bonusrandnum == 4){
+                    if (mbonusblock.transform.position.y < h4){
+                        mbonusblock.transform.position = new Vector3(3f * mnozh,h4,0.0f);
+                        isbonusfalling = false;
+                    }
+                } else if (bonusrandnum == 5){
+                    if (mbonusblock.transform.position.y < h5){
+                        mbonusblock.transform.position = new Vector3(0.0f,h5,0.0f);
+                        isbonusfalling = false;
+                    }
+                } else if (bonusrandnum == 6){
+                    if (mbonusblock.transform.position.y < h6){
+                        mbonusblock.transform.position = new Vector3(-3f * mnozh,h6,0.0f);
+                        isbonusfalling = false;
+                    }
+                } else if (bonusrandnum == 7){
+                    if (mbonusblock.transform.position.y < h7){
+                        mbonusblock.transform.position = new Vector3(3f * mnozh,h7,3f * mnozh);
+                        isbonusfalling = false;
+                    }
+                } else if (bonusrandnum == 8){
+                    if (mbonusblock.transform.position.y < h8){
+                        mbonusblock.transform.position = new Vector3(0.0f,h8,3f * mnozh);
+                        isbonusfalling = false;
+                    }
+                } else if (bonusrandnum == 9){
+                    if (mbonusblock.transform.position.y < h9){
+                        mbonusblock.transform.position = new Vector3(-3f * mnozh,h9,3f * mnozh);
+                        isbonusfalling = false;
+                    }
                 }
             }
         }
-
-        
     }
 
 }
