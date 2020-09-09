@@ -268,7 +268,7 @@ public class mainscript : MonoBehaviour
         Debug.Log("end game");
        
         rebootbtn.SetActive(true);
-        
+         PlayerPrefs.SetInt("coins", mainscore+PlayerPrefs.GetInt("coins"));
 
         gui_game_over.text="GAME OVER TAP TO REBOOT";
         Time.timeScale = 0;
