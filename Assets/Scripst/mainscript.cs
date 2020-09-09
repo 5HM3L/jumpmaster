@@ -304,6 +304,7 @@ public class mainscript : MonoBehaviour
                 speedboosted = true;
             }
         }
+        /*
         if (Input.touchCount > 0){
             Touch myTouch = Input.GetTouch(0);
             switch (myTouch.phase){
@@ -319,7 +320,7 @@ public class mainscript : MonoBehaviour
                     dirchosen = true;
                     break;
             }
-
+            
             if (dirchosen){
                 if ((controldirection.x < 0 ) && (controldirection.y > 0)){
                     Anim.SetBool("isJump",true);
@@ -333,6 +334,42 @@ public class mainscript : MonoBehaviour
                 } else if ((controldirection.x < 0) && (controldirection.y < 0)){
                     Anim.SetBool("isJump",true);                    
                     MovePerson(4);
+                }
+            }
+        }
+        */
+        if (Input.touchCount > 0){
+            Touch myTouch = Input.GetTouch(0);
+            switch (myTouch.phase){
+                case TouchPhase.Began:
+                    dirchosen = true;
+                    startPos = myTouch.position;
+                    break;
+                case TouchPhase.Moved:
+                    controldirection = myTouch.position - startPos;
+                    break;
+                case TouchPhase.Ended:
+                    controldirection = Vector2.zero;
+                    dirchosen = false;
+                    break;
+            }
+            if (dirchosen){
+                if (controldirection.magnitude > 230){
+                    dirchosen = false;
+                    if ((controldirection.x < 0 ) && (controldirection.y > 0)){
+                        Anim.SetBool("isJump",true);
+                        MovePerson(1);
+                    } else if ((controldirection.x > 0) && (controldirection.y > 0)){
+                        Anim.SetBool("isJump",true);                    
+                        MovePerson(2); 
+                    } else if ((controldirection.x > 0) && (controldirection.y < 0)){
+                        Anim.SetBool("isJump",true);
+                        MovePerson(3); 
+                    } else if ((controldirection.x < 0) && (controldirection.y < 0)){
+                        Anim.SetBool("isJump",true);                    
+                        MovePerson(4);
+                    }
+                    controldirection = Vector2.zero;
                 }
             }
         }
