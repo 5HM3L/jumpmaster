@@ -67,18 +67,14 @@ public class mainscript : MonoBehaviour
     }
 
     //функция перемещения персонажа, принимает направление перемещения (от 1 до 4)
-    IEnumerator playanim(){
-        Anim.SetBool("isJump", false);
-        yield return null;
-    }
     void MovePerson(int direction){
         // если на первой позиции есть 2 возможных направления перемещения
         // 1-вверх,2-вправо,3-вниз,4-влево
-        Anim.SetBool("isJump",true);
         if (heropoz == 1){
             //можем идти вправо
             if (direction == 2){
                 if ((Mathf.Abs(h2 - curh) == 1f) || (Mathf.Abs(h2 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 2; //меняем позицию персонажа
                     curh = h2; // меняем текущую высоты персонажа
                     PosX -= 3f * mnozh; // меняем Х персонажа
@@ -86,6 +82,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 3){
                 if ((Mathf.Abs(h4 - curh) == 1f) || (Mathf.Abs(h4 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 4;
                     curh = h4;
                     PosZ += 3f * mnozh;
@@ -96,6 +93,7 @@ public class mainscript : MonoBehaviour
         } else if (heropoz == 2){
             if (direction == 2){
                 if ((Mathf.Abs(h3 - curh) == 1f) || (Mathf.Abs(h3 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 3;
                     curh = h3;
                     PosX -= 3f * mnozh;
@@ -103,6 +101,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 3){
                 if ((Mathf.Abs(h5 - curh) == 1f) || (Mathf.Abs(h5 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 5;
                     curh = h5;
                     PosZ += 3f * mnozh;
@@ -110,6 +109,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 4){
                 if ((Mathf.Abs(h1 - curh) == 1f) || (Mathf.Abs(h1 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 1;
                     curh = h1;
                     PosX += 3f * mnozh;
@@ -119,6 +119,7 @@ public class mainscript : MonoBehaviour
         } else if (heropoz == 3){
             if (direction == 3){
                 if ((Mathf.Abs(h6 - curh) == 1f) || (Mathf.Abs(h6 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 6;
                     curh = h6;
                     PosZ += 3f * mnozh;
@@ -126,6 +127,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 4){
                 if ((Mathf.Abs(h2 - curh) == 1f) || (Mathf.Abs(h2 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 2;
                     curh = h2;
                     PosX += 3f * mnozh;
@@ -135,6 +137,7 @@ public class mainscript : MonoBehaviour
         } else if (heropoz == 4){
             if (direction == 1){
                 if ((Mathf.Abs(h1 - curh) == 1f) || (Mathf.Abs(h1 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 1;
                     curh = h1;
                     PosZ -= 3f * mnozh;
@@ -142,6 +145,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 2){
                 if ((Mathf.Abs(h5 - curh) == 1f) || (Mathf.Abs(h5 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 5;
                     curh = h5;
                     PosX -= 3f * mnozh;
@@ -149,6 +153,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 3){
                 if ((Mathf.Abs(h7 - curh) == 1f) || (Mathf.Abs(h7 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 7;
                     curh = h7;
                     PosZ += 3f * mnozh;
@@ -158,6 +163,7 @@ public class mainscript : MonoBehaviour
         } else if (heropoz == 5){
             if (direction == 1){
                 if ((Mathf.Abs(h2 - curh) == 1f) || (Mathf.Abs(h2 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 2;
                     curh = h2;
                     PosZ -= 3f * mnozh;
@@ -165,6 +171,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 2){
                 if ((Mathf.Abs(h6 - curh) == 1f) || (Mathf.Abs(h6 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 6;
                     curh = h6;
                     PosX -= 3f * mnozh;
@@ -172,6 +179,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 3){
                 if ((Mathf.Abs(h8 - curh) == 1f) || (Mathf.Abs(h8 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 8;
                     curh = h8;
                     PosZ += 3f * mnozh;
@@ -179,6 +187,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 4){
                 if ((Mathf.Abs(h4 - curh) == 1f) || (Mathf.Abs(h4 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 4;
                     curh = h4;
                     PosX += 3f * mnozh;
@@ -188,6 +197,7 @@ public class mainscript : MonoBehaviour
         } else if (heropoz == 6){
             if (direction == 1){
                 if ((Mathf.Abs(h3 - curh) == 1f) || (Mathf.Abs(h3 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 3;
                     curh = h3;
                     PosZ -= 3f * mnozh;
@@ -195,6 +205,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 4){
                 if ((Mathf.Abs(h5 - curh) == 1f) || (Mathf.Abs(h5 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 5;
                     curh = h5;
                     PosX += 3f * mnozh;
@@ -202,6 +213,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 3){
                 if ((Mathf.Abs(h9 - curh) == 1f) || (Mathf.Abs(h9 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 9;
                     curh = h9;
                     PosZ += 3f * mnozh;
@@ -211,6 +223,7 @@ public class mainscript : MonoBehaviour
         } else if (heropoz == 7){
             if (direction == 2){
                 if ((Mathf.Abs(h8 - curh) == 1f) || (Mathf.Abs(h8 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 8;
                     curh = h8;
                     PosX -= 3f * mnozh;
@@ -218,6 +231,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 1){
                 if ((Mathf.Abs(h4 - curh) == 1f) || (Mathf.Abs(h4 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 4;
                     curh = h4;
                     PosZ -= 3f * mnozh;
@@ -227,6 +241,7 @@ public class mainscript : MonoBehaviour
         } else if (heropoz == 8){
             if (direction == 2){
                 if ((Mathf.Abs(h9 - curh) == 1f) || (Mathf.Abs(h9 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 9;
                     curh = h9;
                     PosX -= 3f * mnozh;
@@ -234,6 +249,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 1){
                 if ((Mathf.Abs(h5 - curh) == 1f) || (Mathf.Abs(h5 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 5;
                     curh = h5;
                     PosZ -= 3f * mnozh;
@@ -241,6 +257,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 4){
                 if ((Mathf.Abs(h7 - curh) == 1f) || (Mathf.Abs(h7 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 7;
                     curh = h7;
                     PosX += 3f * mnozh;
@@ -250,6 +267,7 @@ public class mainscript : MonoBehaviour
         } else if (heropoz == 9){
             if (direction == 1){
                 if ((Mathf.Abs(h6 - curh) == 1f) || (Mathf.Abs(h6 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 6;
                     curh = h6;
                     PosZ -= 3f * mnozh;
@@ -257,6 +275,7 @@ public class mainscript : MonoBehaviour
                 }
             } else if (direction == 4){
                 if ((Mathf.Abs(h8 - curh) == 1f) || (Mathf.Abs(h8 - curh) == 0f)){
+                    Anim.Play("boom");
                     heropoz = 8;
                     curh = h8;
                     PosX += 3f * mnozh;
@@ -270,7 +289,6 @@ public class mainscript : MonoBehaviour
         mainscore = (bonusscore + score);
         gui_score.text = mainscore.ToString();
     }
-    StartCoroutine(playanim());
     }
 
     // ф-ия конец игры
