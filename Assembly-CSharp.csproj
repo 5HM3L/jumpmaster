@@ -47,6 +47,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Reference Include="UnityEngine">
       <HintPath>/home/nrg/Unity/Hub/Editor/2019.4.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -55,11 +56,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+=======
+     <Compile Include="Assets\Scripst\buy_items.cs" />
+>>>>>>> a083736982148ea76406aa6d525724b78beb6dc8
      <Compile Include="Assets\Scripst\camscript.cs" />
      <Compile Include="Assets\Scripst\coins_in_shop.cs" />
      <Compile Include="Assets\Scripst\mainbuttons.cs" />
      <Compile Include="Assets\Scripst\mainscript.cs" />
      <Compile Include="Assets\Scripst\pause.cs" />
+     <Compile Include="Assets\Scripst\selectskins.cs" />
      <Compile Include="Assets\Scripst\setkaskript.cs" />
      <Compile Include="Assets\Scripst\startbutton.cs" />
  <Reference Include="UnityEngine">
