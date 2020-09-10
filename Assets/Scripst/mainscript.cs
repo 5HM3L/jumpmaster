@@ -63,9 +63,14 @@ public class mainscript : MonoBehaviour
     }
 
     //функция перемещения персонажа, принимает направление перемещения (от 1 до 4)
+    IEnumerator playanim(){
+        Anim.SetBool("isJump", false);
+        yield return null;
+    }
     void MovePerson(int direction){
         // если на первой позиции есть 2 возможных направления перемещения
         // 1-вверх,2-вправо,3-вниз,4-влево
+        Anim.SetBool("isJump",true);
         if (heropoz == 1){
             //можем идти вправо
             if (direction == 2){
@@ -261,6 +266,7 @@ public class mainscript : MonoBehaviour
         mainscore = bonusscore + score;
         gui_score.text = mainscore.ToString();
     }
+    StartCoroutine(playanim());
     }
 
     // ф-ия конец игры
@@ -354,52 +360,52 @@ public class mainscript : MonoBehaviour
                     break;
             }
             if (dirchosen){
-                if (controldirection.magnitude > 230){
+                if (controldirection.magnitude > 150){
                     dirchosen = false;
                     if ((controldirection.x < 0 ) && (controldirection.y > 0)){
-                        Anim.SetBool("isJump",true);
+                        
                         MovePerson(1);
                     } else if ((controldirection.x > 0) && (controldirection.y > 0)){
-                        Anim.SetBool("isJump",true);                    
+                                            
                         MovePerson(2); 
                     } else if ((controldirection.x > 0) && (controldirection.y < 0)){
-                        Anim.SetBool("isJump",true);
+                        
                         MovePerson(3); 
                     } else if ((controldirection.x < 0) && (controldirection.y < 0)){
-                        Anim.SetBool("isJump",true);                    
+                                           
                         MovePerson(4);
-                    }
-                    controldirection = Vector2.zero;
+                    }                        
                 }
+                    controldirection = Vector2.zero;
             }
+            
         }
         //считываем нажатие, вызываем ф-ию перемещения
         if((Input.GetKeyDown(KeyCode.UpArrow)) && (PosZ > -2.5f * mnozh)){
             
-            Anim.SetBool("isJump",true);
+            
             MovePerson(1);
             
 
         } else if((Input.GetKeyDown(KeyCode.DownArrow)) && (PosZ < 2.5f * mnozh)){
         
-            Anim.SetBool("isJump",true);
+            
             MovePerson(3);
             
 
         } else if((Input.GetKeyDown(KeyCode.LeftArrow)) && (PosX < 2.5f * mnozh)){
-            Anim.SetBool("isJump",true);
+            
             MovePerson(4);
         
         
         } else if((Input.GetKeyDown(KeyCode.RightArrow)) && (PosX > -2.5f * mnozh)){
         
-        Anim.SetBool("isJump",true);
+        
             MovePerson(2);
         
         
         }
-        else { Anim.SetBool("isJump",false);
-        }
+        
         
         if (startgame){
             starttime += Time.deltaTime;

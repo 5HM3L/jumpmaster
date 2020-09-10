@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - camscript
+    - coins_in_shop
     - mainbuttons
     - mainscript
     - pause
@@ -100,15 +101,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12332}
     - Class: 114
-      Script: {instanceID: 12848}
+      Script: {instanceID: 12640}
     - Class: 114
-      Script: {instanceID: 12922}
+      Script: {instanceID: 12850}
     - Class: 114
-      Script: {instanceID: 13104}
+      Script: {instanceID: 12924}
     - Class: 114
-      Script: {instanceID: 13202}
+      Script: {instanceID: 13106}
     - Class: 114
-      Script: {instanceID: 13230}
+      Script: {instanceID: 13204}
+    - Class: 114
+      Script: {instanceID: 13232}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -191,17 +194,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12332}
     - Class: 114
-      Script: {instanceID: 12712}
+      Script: {instanceID: 12714}
     - Class: 114
-      Script: {instanceID: 12848}
+      Script: {instanceID: 12850}
     - Class: 114
-      Script: {instanceID: 12922}
+      Script: {instanceID: 12924}
     - Class: 114
-      Script: {instanceID: 13104}
+      Script: {instanceID: 13106}
     - Class: 114
-      Script: {instanceID: 13212}
+      Script: {instanceID: 13214}
     - Class: 114
-      Script: {instanceID: 13230}
+      Script: {instanceID: 13232}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -605,6 +608,12 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 57bdebf263e3f918aa0589e9a5a8cf79
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: coins_in_shop
+  - hash:
+      serializedVersion: 2
       Hash: c1933cc0a2f4ff6eb13333347497beb3
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -788,4 +797,4 @@ ScriptsOnlyBuild:
   - Assets/menu.unity
   - Assets/save.unity
   playerPath: "/home/nrg/\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B/jump/New
-    Unity Project/builds/v2.9.6.apk"
+    Unity Project/builds/v3.4.apk"

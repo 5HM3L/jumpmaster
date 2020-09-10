@@ -1766,24 +1766,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim: {fileID: 1071326647}
-  setka: {fileID: 0}
   gui_score: {fileID: 1258703513}
   gui_game_over: {fileID: 159781286}
   gui_game_restart_reboot: {fileID: 0}
   rebootbtn: {fileID: 460429112}
   pref_block_pointer: {fileID: 9105025020871166563, guid: fe11cb65b49785ae5b8b5230de8f7879,
     type: 3}
-  speedbooster_from_height: 3
-  speedbooster_from_bonus: 2
-  scorebooster_height: 3
+  speedbooster_from_height: 2
+  speedbooster_from_bonus: 1
+  scorebooster_height: 2
   rb: {fileID: 1071326645}
   block: {fileID: 2450022110781117715, guid: 0482d920d437c162ebfb82998ff2870c, type: 3}
   bonusblock: {fileID: 1916953501}
-  bonusblockspawncount: 10
+  bonusblockspawncount: 8
   speed: 15
   mnozh: 1
   spawnheight: 30
-  layerscount: 2
+  layerscount: 3
   startPos: {x: 0, y: 50}
 --- !u!95 &1071326647 stripped
 Animator:
