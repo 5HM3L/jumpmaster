@@ -36,11 +36,13 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripst\buy_items.cs" />
      <Compile Include="Assets\Scripst\camscript.cs" />
      <Compile Include="Assets\Scripst\coins_in_shop.cs" />
      <Compile Include="Assets\Scripst\mainbuttons.cs" />
      <Compile Include="Assets\Scripst\mainscript.cs" />
      <Compile Include="Assets\Scripst\pause.cs" />
+     <Compile Include="Assets\Scripst\selectskins.cs" />
      <Compile Include="Assets\Scripst\setkaskript.cs" />
      <Compile Include="Assets\Scripst\startbutton.cs" />
     <Reference Include="UnityEngine">

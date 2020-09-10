@@ -12,7 +12,8 @@ public class mainscript : MonoBehaviour
 {
     public Animator Anim;
     // Start is called before the first frame update
-    public UnityEngine.UI.Text gui_score; // очки текст
+    public UnityEngine.UI.Text gui_score; 
+    public UnityEngine.UI.Text collected; // очки текст
     public UnityEngine.UI.Text gui_game_over; // конец игры
     public UnityEngine.UI.Text gui_game_restart_reboot; // кнопка перезапуска
     public GameObject rebootbtn;
@@ -49,10 +50,13 @@ public class mainscript : MonoBehaviour
     public int layerscount = 1; //максимально количество заполненых блоками слоев
     private bool dirchosen = false;
     public Vector2 startPos;
+    public UnityEngine.UI.Text multiplier;
     // счетчики сколько блоков подряд заспавнилось на конкретной позиции
     void Start()
-
-    {  
+        
+    {  if (PlayerPrefs.GetInt("multi")==0){
+         PlayerPrefs.SetInt("multi",1);}
+        multiplier.text = "X"+PlayerPrefs.GetInt("multi").ToString();
         rebootbtn.SetActive(false);
         gui_score.text = "0"; // инициализация счета
         gui_game_over.text = " ";//инициализация текста конца игры
@@ -258,7 +262,7 @@ public class mainscript : MonoBehaviour
     // если счет меньше текущей высоты меняем счет
     if (score < curh){
         score =(int) curh;
-        mainscore = bonusscore + score;
+        mainscore = (bonusscore + score);
         gui_score.text = mainscore.ToString();
     }
     }
@@ -268,14 +272,18 @@ public class mainscript : MonoBehaviour
         Debug.Log("end game");
        
         rebootbtn.SetActive(true);
-         PlayerPrefs.SetInt("coins", mainscore+PlayerPrefs.GetInt("coins"));
-
+        
+        mainscore = mainscore*PlayerPrefs.GetInt("multi");
         gui_game_over.text="GAME OVER TAP TO REBOOT";
+        collected.text=(mainscore.ToString()+ " coins collected");
+
         Time.timeScale = 0;
+         PlayerPrefs.SetInt("coins", mainscore+PlayerPrefs.GetInt("coins"));
 
     }
       public void restart_scene(){
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
         Time.timeScale = 1f;
         
          }
