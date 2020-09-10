@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class camscript : MonoBehaviour{
-public Transform who;
+private Transform who;
+public Transform[] Players;
 public int height = 20;
 Vector3 position;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        who = Players[PlayerPrefs.GetInt("selected_hero")];
     }
 
     // Update is called once per frame
