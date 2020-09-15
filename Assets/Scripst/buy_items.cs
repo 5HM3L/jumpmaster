@@ -11,12 +11,18 @@ public class buy_items : MonoBehaviour
 
     {
       maudio.Play();  
-      ///  PlayerPrefs.SetInt("coins",0);
-     ///   PlayerPrefs.SetInt("red",0);
-      //  PlayerPrefs.SetInt("neon",0);
-      //  PlayerPrefs.SetInt("white",0);
-      //  PlayerPrefs.SetInt("black",0);
-      //  PlayerPrefs.SetInt("multi",0);
+      PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins"));
+      /*
+      PlayerPrefs.SetInt("coins", 0);
+      PlayerPrefs.SetInt("multi_x2", 0);
+      PlayerPrefs.SetInt("multi_x4", 0);
+      PlayerPrefs.SetInt("multi_x8", 0);
+      PlayerPrefs.SetInt("red",0);
+      PlayerPrefs.SetInt("neon",0);
+      PlayerPrefs.SetInt("white",0);
+      PlayerPrefs.SetInt("black",0);
+      PlayerPrefs.SetInt("multi",0);
+      */
     }
 
     // Update is called once per frame
@@ -87,14 +93,21 @@ public class buy_items : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("coins") > 499)
         {
-            if (PlayerPrefs.GetInt("multi") == 0)
-            {
-                PlayerPrefs.SetInt("multi", 2);
-                 maudio.Play();
+            if (PlayerPrefs.GetInt("multi_x2") == 0){
+                if (PlayerPrefs.GetInt("multi") == 0)
+                {
+                    PlayerPrefs.SetInt("multi_x2", 1);
+                    PlayerPrefs.SetInt("multi", 2);
+                    PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") - 500);
+                    maudio.Play();
+                }
+                else {
+                    PlayerPrefs.SetInt("multi_x2", 1); 
+                    PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") - 500);
+                    PlayerPrefs.SetInt("multi", PlayerPrefs.GetInt("multi") * 2);
+                    maudio.Play();
+                }
             }
-            else { PlayerPrefs.SetInt("multi", PlayerPrefs.GetInt("multi") * 2);
-             maudio.Play();
-              }
         }
     }
 
@@ -102,14 +115,21 @@ public class buy_items : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("coins") > 999)
         {
-            if (PlayerPrefs.GetInt("multi") == 0)
-            {
-                PlayerPrefs.SetInt("multi", 4);
-                 maudio.Play();
+            if (PlayerPrefs.GetInt("multi_x4") == 0){
+                if (PlayerPrefs.GetInt("multi") == 0)
+                {
+                    PlayerPrefs.SetInt("multi_x4", 1);
+                    PlayerPrefs.SetInt("multi", 4);
+                    PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") - 1000);
+                    maudio.Play();
+                }
+                else {
+                    PlayerPrefs.SetInt("multi_x4", 1); 
+                    PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") - 1000);
+                    PlayerPrefs.SetInt("multi", PlayerPrefs.GetInt("multi") * 4);
+                    maudio.Play();
+                }
             }
-            else { PlayerPrefs.SetInt("multi", PlayerPrefs.GetInt("multi") * 4);
-             maudio.Play();
-              }
         }
     }
 
@@ -117,14 +137,21 @@ public class buy_items : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("coins") > 2999)
         {
-            if (PlayerPrefs.GetInt("multi") == 0)
-            {
-                PlayerPrefs.SetInt("multi", 8);
-                 maudio.Play();
+            if (PlayerPrefs.GetInt("multi_x8") == 0){
+                if (PlayerPrefs.GetInt("multi") == 0)
+                {
+                    PlayerPrefs.SetInt("multi_x8", 1);
+                    PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") - 3000);
+                    PlayerPrefs.SetInt("multi", 8);
+                    maudio.Play();
+                }
+                else { 
+                    PlayerPrefs.SetInt("multi_x8", 1);
+                    PlayerPrefs.SetInt("coins", PlayerPrefs.GetInt("coins") - 3000);
+                    PlayerPrefs.SetInt("multi", PlayerPrefs.GetInt("multi") * 8);
+                    maudio.Play();
+                }
             }
-            else { PlayerPrefs.SetInt("multi", PlayerPrefs.GetInt("multi") * 8);
-             maudio.Play();
-              }
         }
     }
 }

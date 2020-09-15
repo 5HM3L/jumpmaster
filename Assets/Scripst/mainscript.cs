@@ -295,7 +295,6 @@ public class mainscript : MonoBehaviour
 
     // ф-ия конец игры
     void endgame(){
-        Debug.Log("end game");
        
         rebootbtn.SetActive(true);
         
