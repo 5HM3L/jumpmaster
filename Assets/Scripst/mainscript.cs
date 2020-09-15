@@ -11,6 +11,7 @@ public class mainscript : MonoBehaviour
 
 {
     public AudioSource m_audio;
+    public ParticleSystem particles;
     public Animator Anim;
     // Start is called before the first frame update
     public UnityEngine.UI.Text gui_score; 
@@ -317,6 +318,8 @@ public class mainscript : MonoBehaviour
 
     void OnTriggerEnter(Collider bonuscollider){
         if (bonuscollider.gameObject.name == "bonusblock Variant(Clone)"){
+            particles.transform.position = bonuscollider.transform.position;
+            particles.Play(true);
             speed += speedbooster_from_bonus;
             bonusscore += 10;
             mainscore = bonusscore + score;
