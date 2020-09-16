@@ -34,7 +34,8 @@ public class mainscript : MonoBehaviour
     private float PosZ = 0.0f; //по Z
     private float PosY = 0.5f; //по Y
     private GameObject mblock; // объект для падающего блока
-    private GameObject mbonusblock; //объект для бонус-блока
+    private GameObject mbonusblock;
+    public GameObject[] blocksvariants; //объект для бонус-блока
     public GameObject block; // подключене префаба падающего блока
     public GameObject bonusblock; //подключение префаба бонус-блока
     public int bonusblockspawncount = 10;
@@ -518,7 +519,8 @@ public class mainscript : MonoBehaviour
                     }
                 }
                 randkey = true; // включаем цикл генерации на следующий раз
-                mblock = Instantiate(block) as GameObject; //создаем новый блок
+                mblock = Instantiate(blocksvariants[Random.Range(0, 4)]) as GameObject;
+                //mblock = Instantiate(block) as GameObject; //создаем новый блок
                 block_pointer = Instantiate(pref_block_pointer) as GameObject;
                 blockcount += 1;
                 // в зависимости от сгенерированной позиции устанавливаем координаты блока
