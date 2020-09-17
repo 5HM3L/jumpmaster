@@ -658,7 +658,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 6c67abd2cf283ca2bc6023ab8ec03420
+      Hash: 5c2ce4e3902b4350ffa0f8ff345cc49a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: mainscript
@@ -834,4 +834,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/menu.unity
   - Assets/save.unity
-  playerPath: /home/nrg/git_jumpmaster/builds/v0.2alpha.apk
+  playerPath: /home/nrg/git_jumpmaster/builds/v1.1 alpha bundle.aab

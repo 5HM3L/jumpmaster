@@ -12,6 +12,7 @@ public class mainscript : MonoBehaviour
 {
     public AudioSource m_audio;
     public ParticleSystem particles;
+    public ParticleSystem particle_plane;
     public Animator Anim;
     // Start is called before the first frame update
     public UnityEngine.UI.Text gui_score; 
@@ -562,6 +563,8 @@ public class mainscript : MonoBehaviour
                         mblock.transform.position = new Vector3(3f * mnozh,h1,-3f * mnozh); // блок упал, ставим его
                         h1 += 1f * mnozh; // меняем высоты позиции
                         isfalling = false; // блок упал, нужно генерировать новый
+                        particle_plane.transform.position = mblock.transform.position;
+                        particle_plane.Play(true);
                         Destroy(block_pointer.gameObject);
                     }
                 } else if (randnum == 2){
@@ -569,6 +572,8 @@ public class mainscript : MonoBehaviour
                         mblock.transform.position = new Vector3(0.0f,h2,-3f * mnozh);
                         h2 += 1f * mnozh;
                         isfalling = false;
+                        particle_plane.transform.position = mblock.transform.position;
+                        particle_plane.Play(true);
                         Destroy(block_pointer.gameObject);
                     }
                 } else if (randnum == 3){
@@ -576,6 +581,8 @@ public class mainscript : MonoBehaviour
                         mblock.transform.position = new Vector3(-3f * mnozh,h3,-3f * mnozh);
                         h3 += 1f * mnozh;
                         isfalling = false;
+                        particle_plane.transform.position = mblock.transform.position;
+                        particle_plane.Play(true);
                         Destroy(block_pointer.gameObject);
                     }
                 } else if (randnum == 4){
@@ -583,6 +590,8 @@ public class mainscript : MonoBehaviour
                         mblock.transform.position = new Vector3(3f * mnozh,h4,0.0f);
                         h4 += 1f * mnozh;
                         isfalling = false;
+                        particle_plane.transform.position = mblock.transform.position;
+                        particle_plane.Play(true);
                         Destroy(block_pointer.gameObject);
                     }
                 } else if (randnum == 5){
@@ -590,6 +599,8 @@ public class mainscript : MonoBehaviour
                         mblock.transform.position = new Vector3(0.0f,h5,0.0f);
                         h5 += 1f * mnozh;
                         isfalling = false;
+                        particle_plane.transform.position = mblock.transform.position;
+                        particle_plane.Play(true);
                         Destroy(block_pointer.gameObject);
                     }
                 } else if (randnum == 6){
@@ -597,6 +608,8 @@ public class mainscript : MonoBehaviour
                         mblock.transform.position = new Vector3(-3f * mnozh,h6,0.0f);
                         h6 += 1f * mnozh;
                         isfalling = false;
+                        particle_plane.transform.position = mblock.transform.position;
+                        particle_plane.Play(true);
                         Destroy(block_pointer.gameObject);
                     }
                 } else if (randnum == 7){
@@ -604,6 +617,8 @@ public class mainscript : MonoBehaviour
                         mblock.transform.position = new Vector3(3f * mnozh,h7,3f * mnozh);
                         h7 += 1f * mnozh;
                         isfalling = false;
+                        particle_plane.transform.position = mblock.transform.position;
+                        particle_plane.Play(true);
                         Destroy(block_pointer.gameObject);
                     }
                 } else if (randnum == 8){
@@ -611,6 +626,8 @@ public class mainscript : MonoBehaviour
                         mblock.transform.position = new Vector3(0.0f,h8,3f * mnozh);
                         h8 += 1f * mnozh;
                         isfalling = false;
+                        particle_plane.transform.position = mblock.transform.position;
+                        particle_plane.Play(true);
                         Destroy(block_pointer.gameObject);
                     }
                 } else if (randnum == 9){
@@ -618,6 +635,8 @@ public class mainscript : MonoBehaviour
                         mblock.transform.position = new Vector3(-3f * mnozh,h9,3f * mnozh);
                         h9 += 1f * mnozh;
                         isfalling = false;
+                        particle_plane.transform.position = mblock.transform.position;
+                        particle_plane.Play(true);
                         Destroy(block_pointer.gameObject);
                     }
                 }
